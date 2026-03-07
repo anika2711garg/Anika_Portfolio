@@ -1,9 +1,8 @@
-// src/pages/Home.jsx
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import RotatingCube from "../components/3d/RotatingCube";
 import BouncingSphere from "../components/3d/BouncingSphere";
 import Scene from "../components/3d/Scene";
-import "../styles/animations.css";
 import WavyCone from "../components/3d/WavyCone";
 import FloatingIcosahedron from "../components/3d/FloatingIcosahedron";
 import SpinningTorus from "../components/3d/SpinningTorus";
@@ -11,22 +10,21 @@ import Capsule from "../components/3d/Capsule";
 import Cylinder from "../components/3d/Cylinder";
 import RotatingDodecahedron from "../components/3d/Dodecahedron";
 import { Dodecahedron } from "@react-three/drei";
+import { motion } from "framer-motion";
+
+// Icons (assuming paths are correct from previous view)
 import ReactIcon from '../assets/react.svg';
 import Nextjs from '../icons/nextjs.svg';
 import Tailwind from '../icons/tailwindcss.svg';
-import Threejs from '../icons/Threejs.svg';
-import Stream from '../icons/streamlitt.png';
-import Plotly from '../icons/plotly-icon.svg';
-import Chart from '../icons/chartjs-logo.svg';
 import Node from '../icons/node-js.svg';
 import Express from '../icons/express.png';
 import Mongo from '../icons/Mongo.png';
 import Mysql from '../icons/Mysql.png';
-import Python from '../icons/python.png';
 import Rest from '../icons/rest.png';
 import github from '../icons/github.png';
 import Azure from '../icons/azure.jpeg';
 import Postman from '../icons/postman.png';
+
 export default function Home() {
   const [showExtra, setShowExtra] = useState(false);
 
@@ -35,144 +33,148 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  const frontend = [
-    { name: "React.js", icon: ReactIcon },
-    { name: "Next.js", icon: Nextjs },
-    { name: "Tailwind CSS", icon: Tailwind },
-    { name: "HTML5/CSS3", icon: ReactIcon }, // Generic fallback
-    { name: "Bootstrap", icon: Tailwind }, // Generic fallback
+  const skillGroups = [
+    {
+      title: "Frontend",
+      skills: [
+        { name: "React.js", icon: ReactIcon },
+        { name: "Next.js", icon: Nextjs },
+        { name: "Tailwind CSS", icon: Tailwind },
+        { name: "JavaScript", icon: ReactIcon },
+      ]
+    },
+    {
+      title: "Backend",
+      skills: [
+        { name: "Node.js", icon: Node },
+        { name: "Express.js", icon: Express },
+        { name: "REST APIs", icon: Rest },
+        { name: "MongoDB", icon: Mongo },
+      ]
+    },
+    {
+      title: "Tools",
+      skills: [
+        { name: "GitHub", icon: github },
+        { name: "Azure", icon: Azure },
+        { name: "Postman", icon: Postman },
+        { name: "Git", icon: github },
+      ]
+    }
   ];
-
-  const backend = [
-    { name: "Node.js", icon: Node },
-    { name: "Express.js", icon: Express },
-    { name: "RESTful APIs", icon: Rest },
-    { name: "MongoDB", icon: Mongo },
-    { name: "MySQL", icon: Mysql },
-    { name: "Java/C", icon: Python }, // Generic fallback
-  ];
-
-  const tools = [
-    { name: "GitHub", icon: github },
-    { name: "Azure", icon: Azure },
-    { name: "Postman", icon: Postman },
-    { name: "Git", icon: github },
-    { name: "VS Code", icon: github },
-    { name: "Linux", icon: github },
-  ];
-
-  const methodologies = [
-    { name: "Agile/Scrum", icon: github },
-    { name: "SDLC", icon: github },
-    { name: "TDD", icon: github },
-    { name: "OO Design", icon: github },
-  ];
-
-
-  const SkillColumn = ({ title, skills }) => (
-    <div className="space-y-6">
-      <h3 className="text-2xl font-bold text-pink-500 tracking-wide">{title}</h3>
-      <div className="grid grid-cols-2 sm:grid-cols-1 gap-4">
-        {skills.map(({ name, icon }) => (
-          <div
-            key={name}
-            className="flex items-center gap-4 p-4 rounded-xl shadow-md backdrop-blur-lg bg-red-300 border border-pink-300/30 transition-transform transform hover:scale-105 hover:shadow-lg"
-          >
-            <img src={icon} alt={name} className="w-7 h-7" />
-            <span className="text-black font-bold">{name}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
 
   return (
-    <div className="min-h-screen bg-[#0f0f1a] text-white px-6 py-12 md:px-20 flex flex-col items-center justify-center space-y-20">
+    <div className="min-h-screen pt-24 md:pt-32 pb-20 px-4 md:px-12 lg:px-24 bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
       {/* Hero Section */}
-      <div className="w-full grid md:grid-cols-2 gap-14 items-center">
-        <div className="space-y-6">
-          <h1 className="text-6xl font-['Raleway'] tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-500 animate-pulse">
-            Anika Garg | MERN Developer
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="space-y-6 md:space-y-8 text-center lg:text-left"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="font-handwriting text-indigo-400 text-3xl md:text-5xl drop-shadow-sm"
+          >
+            Innovation and Algorithms
+          </motion.div>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.9] text-[var(--foreground)]">
+            Scale <br />
+            <span className="text-gradient">Beyond</span> Limits
           </h1>
-          <p className="text-lg leading-relaxed text-gray-300 max-w-xl">
-            I’m a MERN stack developer focused on building high-performance web applications and scalable backend architectures. With a strong foundation in Data Structures and Algorithms, I strive to write clean, efficient, and maintainable code. From architecting RESTful APIs to crafting responsive UIs, I am passionate about delivering end-to-end digital solutions.
+          <p className="text-lg md:text-xl text-[var(--text-muted)] leading-relaxed max-w-xl font-medium">
+            Merging data structures with dynamic interfaces. Specializing in high-performance architectures and seamless user journeys.
           </p>
-        </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <Link to="/projects" className="btn-premium w-full sm:w-auto text-center">View Projects</Link>
+            <Link to="/contact" className="px-6 py-2 rounded-full border border-[var(--glass-border)] glass hover:bg-white/10 transition-colors w-full sm:w-auto text-center">Contact Me</Link>
+          </div>
+        </motion.div>
 
-        <div className="h-[500px] rounded-2xl shadow-2xl overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-black animate-fade-in">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="h-[300px] md:h-[500px] rounded-3xl overflow-hidden glass relative group"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-pink-500/10 -z-10 group-hover:opacity-20 transition-opacity" />
           <Scene>
             <RotatingCube position={[-4, 2, -2]} />
             <BouncingSphere position={[4, 2, -2]} />
             <SpinningTorus position={[-4, -2, 2]} />
-            <WavyCone position={[4, -2, 2]} />
-            <FloatingIcosahedron position={[-2, 0, 4]} />
-            <Capsule position={[2, 0, 4]} />
-            <Cylinder position={[0, -3, -3]} />
-            <Dodecahedron
-              position={[0, 3, 0]}
-              args={[1, 0]}
-              scale={1.5}
-              rotation={[Math.PI / 4, Math.PI / 4, Math.PI / 4]}
-            />
-            <RotatingDodecahedron position={[0, 3, 0]} args={[1, 0]} scale={1.5} rotation={[Math.PI / 4, Math.PI / 4, Math.PI / 4]} />
+            <Dodecahedron position={[0, 0, 0]} args={[1, 0]} scale={1.5} />
           </Scene>
+        </motion.div>
+      </div>
 
+      {/* Skills Grid */}
+      <div className="max-w-7xl mx-auto mt-24 md:mt-32 space-y-12">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl md:text-4xl font-bold">Tech <span className="text-gradient">Arsenal</span></h2>
+          <p className="text-[var(--text-muted)]">The tools and technologies I use to bring ideas to life.</p>
+        </div>
 
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {skillGroups.map((group, gIdx) => (
+            <div key={group.title} className="space-y-6">
+              <h3 className="text-xl font-bold opacity-70 px-2">{group.title}</h3>
+              <div className="grid gap-4">
+                {group.skills.map((skill, sIdx) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (gIdx * 0.2) + (sIdx * 0.1) }}
+                    className="flex items-center gap-4 p-4 rounded-2xl glass hover:border-indigo-500/30 hover:bg-white/5 transition-all group"
+                  >
+                    <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--background)] border border-[var(--glass-border)] p-2 group-hover:scale-110 transition-transform">
+                      <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
+                    </div>
+                    <span className="font-semibold opacity-80 group-hover:opacity-100">{skill.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Tech Stacks Grid */}
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        <SkillColumn title="Frontend" skills={frontend} />
-        <SkillColumn title="Backend" skills={backend} />
-        <SkillColumn title="Tools & Dev" skills={tools} />
-        <SkillColumn title="Methodologies" skills={methodologies} />
-      </div>
-
-      {/* Extra Animated Section */}
+      {/* Extra Interactive Cards */}
       {showExtra && (
-        <div className="w-full flex flex-col md:flex-row gap-10 justify-center items-center pt-16">
-
-          {/* Rotating Cube */}
-          <div className="w-[300px] h-[380px] bg-black rounded-2xl p-4 shadow-lg animate-float flex flex-col items-center justify-between text-white relative">
-            <div className="absolute top-4 text-xl">🧊 Optimization Mode</div>
-            <Scene>
-              <RotatingCube />
-            </Scene>
-            <div className="text-center mt-4">
-              <h2 className="text-xl font-semibold">The Efficiency Cube</h2>
-              <p className="text-sm mt-1 text-gray-300">
-                Scaling APIs and optimizing databases is my forte. Like this cube, my code is structured and solid.
-              </p>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-7xl mx-auto mt-24 md:mt-32 grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          <div className="p-6 md:p-8 rounded-3xl glass space-y-6 group">
+            <div className="h-40 md:h-48 rounded-2xl overflow-hidden glass relative">
+              <Scene><RotatingCube /></Scene>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-2xl font-bold text-indigo-500">Efficiency Focused</h3>
+              <p className="text-[var(--text-muted)]">Optimizing performance and scalability is at the core of my development process.</p>
             </div>
           </div>
-
-          {/* Bouncing Sphere */}
-          <div className="w-[300px] h-[380px] bg-black rounded-2xl p-4 shadow-lg animate-float delay-500 flex flex-col items-center justify-between text-white relative">
-            <div className="absolute top-4 text-xl">☕ Dev. Solve. Deploy.</div>
-            <Scene>
-              <BouncingSphere />
-            </Scene>
-            <div className="text-center mt-4">
-              <h2 className="text-xl font-semibold">The Problem Solver</h2>
-              <p className="text-sm mt-1 text-gray-300">
-                260+ LeetCode problems and counting. I bounce between complex algorithms and elegant UI fixes.
-              </p>
+          <div className="p-6 md:p-8 rounded-3xl glass space-y-6 group">
+            <div className="h-40 md:h-48 rounded-2xl overflow-hidden glass relative">
+              <Scene><BouncingSphere /></Scene>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-2xl font-bold text-pink-500">Problem Solver</h3>
+              <p className="text-[var(--text-muted)]">Tackling complex challenges with structured algorithms and elegant solutions.</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
 
-
-
-      {/* Moving Tagline Section */}
-      <div className="text-center mt-20">
-        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 animate-text-slide">
-          Code. Build. Scale.
+      {/* Tagline */}
+      <div className="text-center mt-24 md:mt-32 py-10 md:py-20 border-t border-[var(--glass-border)]">
+        <h2 className="text-4xl md:text-7xl font-extrabold opacity-5 select-none">
+          CODE • BUILD • SCALE
         </h2>
-        <p className="text-lg mt-4 text-gray-400">
-          Transforming complex problems into seamless digital experiences — I build for the future.
-        </p>
       </div>
     </div>
   );

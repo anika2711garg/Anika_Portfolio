@@ -8,10 +8,17 @@ export function useTheme() {
 }
 
 export default function ThemeProvider({ children }) {
-  const [dark, setDark] = useState(true);
+  const [theme, setTheme] = useState("dark");
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
+
   return (
-    <ThemeContext.Provider value={{ dark, setDark }}>
-      <div className={(dark ? "dark bg-gray-900 text-white" : "bg-gray-50 text-black") + " font-['Poppins']"}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div className={`${theme} min-h-screen transition-colors duration-300`}>
         {children}
       </div>
     </ThemeContext.Provider>

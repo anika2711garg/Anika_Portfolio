@@ -1,101 +1,129 @@
+import { motion } from "framer-motion";
 import ReactifyImg from "../assets/Reactify.png";
 import NexusImg from "../assets/Nexus.png";
 import CrisisConnectImg from "../assets/CrisisConnect.png";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 export default function Projects() {
   const projects = [
     {
       title: "Reactify",
       image: ReactifyImg,
-      bullets: [
-        "Built an AI-powered platform that converts website URLs or screenshots into production-ready React + Tailwind components using Groq (Llama 3) and Google Gemini 1.5.",
-        "Implemented features like live preview, responsive device simulation, AI-assisted design refinement, and component export using Next.js 14, Tailwind CSS, and Puppeteer/Playwright.",
-      ],
+      description: "AI-powered platform converting URLs/screenshots to production-ready React + Tailwind components.",
+      tech: ["Next.js 14", "Gemini AI", "Puppeteer"],
       projectUrl: "https://reactify.example.com",
       githubUrl: "https://github.com/anika2711garg/Reactify"
     },
     {
-      title: "Nexus – Decentralized Prediction Market",
+      title: "Nexus",
       image: NexusImg,
-      bullets: [
-        "Contributed to the full-stack development of a decentralized prediction market platform on Solana Devnet.",
-        "Built a Next.js + React frontend and integrated blockchain transactions using @solana/web3.js.",
-        "Integrated wallet adapters for Phantom/Solflare to ensure seamless user onboarding."
-      ],
+      description: "Decentralized prediction market on Solana Devnet with real-time transaction tracking.",
+      tech: ["Solana", "Web3.js", "Tailwind"],
       projectUrl: "https://nexus.example.com",
       githubUrl: "https://github.com/anika2711garg/Nexus"
     },
     {
       title: "CrisisConnect",
       image: CrisisConnectImg,
-      bullets: [
-        "Spearheaded the end-to-end development of a highly available crisis reporting platform.",
-        "Architected a scalable Node.js backend with 20+ RESTful APIs for CRUD operations.",
-        "Deployed on Node.js clusters and integrated Azure AI for intelligent incident analysis."
-      ],
+      description: "High-availability reporting platform with Azure AI for incident analysis.",
+      tech: ["Node.js", "Azure AI", "MongoDB"],
       projectUrl: "https://github.com/anika2711garg/CrisisConnect",
       githubUrl: "https://github.com/anika2711garg/CrisisConnect"
     }
   ];
 
+  const containerVars = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
+  };
+
+  const itemVars = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <div className="bg-grey py-16 px-6 md:px-20 min-h-screen">
-      <h2 className="text-4xl md:text-5xl font-extrabold text-center text-white mb-4">
-        Recent projects
-      </h2>
-      <p className="text-center text-red-500 max-w-3xl mx-auto text-lg mb-12">
-        Below you can see some examples of my recent work. Check out my complete{" "}
-        <a href="https://github.com/anika2711garg" className="text-purple-700 font-semibold underline hover:text-purple-900 transition">
-          GitHub
-        </a>
-        . Have a project you would like to discuss?{" "}
-        <a href="mailto:1406anika@gmail.com" className="text-purple-700 font-semibold underline hover:text-purple-900 transition">
-          Let’s make something great together!
-        </a>
-      </p>
+    <div className="min-h-screen pt-24 md:pt-32 pb-20 px-4 md:px-12 lg:px-24 bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-indigo-500/5 rounded-full blur-[120px] -z-10" />
+      <div className="absolute bottom-0 left-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-pink-500/5 rounded-full blur-[120px] -z-10" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-xl rounded-xl overflow-hidden transition-transform duration-300 hover:scale-105 flex flex-col"
+      <div className="max-w-7xl mx-auto space-y-12 md:space-y-16">
+        <div className="text-center space-y-4">
+          <motion.div
+            initial={{ opacity: 0, rotate: -2 }}
+            animate={{ opacity: 1, rotate: 0 }}
+            className="font-handwriting text-indigo-400 text-3xl md:text-5xl"
           >
-            <div className="h-48 overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
-              <p className="text-gray-700 text-sm mb-4 line-clamp-3">
-                {project.bullets[0]}
-              </p>
-              <div className="mt-auto flex gap-3">
-                <a
-                  href={project.projectUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 text-sm font-medium bg-black text-white rounded-full hover:bg-gray-800 transition"
-                >
-                  View Project →
-                </a>
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 rounded-full hover:bg-gray-100 transition"
-                >
-                  GitHub ↗
-                </a>
-              </div>
+            Proof of technical mastery
+          </motion.div>
+          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight">
+            Featured <span className="text-gradient">Projects</span>
+          </h2>
+          <p className="text-lg md:text-xl text-[var(--text-muted)] max-w-2xl mx-auto leading-relaxed">
+            A selection of my recent full-stack endeavors, bridging complex backends with fluid interfaces.
+          </p>
+        </div>
 
-            </div>
-          </div>
-        ))}
+        <motion.div
+          variants={containerVars}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
+        >
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              variants={itemVars}
+              className="glass rounded-3xl overflow-hidden group border border-[var(--glass-border)] hover:border-indigo-500/30 transition-all duration-500 flex flex-col"
+            >
+              <div className="relative h-56 overflow-hidden">
+                <div className="absolute inset-0 bg-indigo-500/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-8 space-y-4 flex-grow flex flex-col">
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t, i) => (
+                    <span key={i} className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-2xl font-bold">{project.title}</h3>
+                <p className="text-[var(--text-muted)] leading-relaxed flex-grow">
+                  {project.description}
+                </p>
+                <div className="pt-6 flex items-center justify-between border-t border-[var(--glass-border)] opacity-60 group-hover:opacity-100 transition-opacity">
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 font-bold text-sm hover:text-indigo-400"
+                  >
+                    <FaGithub /> SOURCE
+                  </a>
+                  <a
+                    href={project.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 font-bold text-sm hover:text-pink-400 text-gradient"
+                  >
+                    LIVE PREVIEW <FaExternalLinkAlt size={12} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </div>
-
   );
 }

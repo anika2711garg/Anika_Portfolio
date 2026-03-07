@@ -14,10 +14,10 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<About />} />
+          <Route path="/skills" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/Home" element={<Home />} />
         </Routes>
       </ThemeProvider>
     </Router>
