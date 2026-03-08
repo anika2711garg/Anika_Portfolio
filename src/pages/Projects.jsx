@@ -11,7 +11,7 @@ export default function Projects() {
       image: ReactifyImg,
       description: "AI-powered platform converting URLs/screenshots to production-ready React + Tailwind components.",
       tech: ["Next.js 14", "Gemini AI", "Puppeteer"],
-      projectUrl: "https://reactify.example.com",
+      projectUrl: "https://reactify-3f22.vercel.app/",
       githubUrl: "https://github.com/anika2711garg/Reactify"
     },
     {
@@ -19,7 +19,7 @@ export default function Projects() {
       image: NexusImg,
       description: "Decentralized prediction market on Solana Devnet with real-time transaction tracking.",
       tech: ["Solana", "Web3.js", "Tailwind"],
-      projectUrl: "https://nexus.example.com",
+      projectUrl: "https://nexus-atkp.vercel.app/",
       githubUrl: "https://github.com/anika2711garg/Nexus"
     },
     {
@@ -27,8 +27,8 @@ export default function Projects() {
       image: CrisisConnectImg,
       description: "High-availability reporting platform with Azure AI for incident analysis.",
       tech: ["Node.js", "Azure AI", "MongoDB"],
-      projectUrl: "https://github.com/anika2711garg/CrisisConnect",
-      githubUrl: "https://github.com/anika2711garg/CrisisConnect"
+      projectUrl: "https://youtu.be/tpAC3SFzV_4",
+      githubUrl: "https://github.com/anika2711garg/Microsoft-Hackathon"
     }
   ];
 

@@ -151,7 +151,7 @@ export default function Home() {
         >
           <div className="p-6 md:p-8 rounded-3xl glass space-y-6 group">
             <div className="h-40 md:h-48 rounded-2xl overflow-hidden glass relative">
-              <Scene><RotatingCube /></Scene>
+              <Scene className="h-full w-full" cameraPos={[0, 0, 8]}><RotatingCube /></Scene>
             </div>
             <div className="space-y-2">
               <h3 className="text-2xl font-bold text-indigo-500">Efficiency Focused</h3>
@@ -160,7 +160,7 @@ export default function Home() {
           </div>
           <div className="p-6 md:p-8 rounded-3xl glass space-y-6 group">
             <div className="h-40 md:h-48 rounded-2xl overflow-hidden glass relative">
-              <Scene><BouncingSphere /></Scene>
+              <Scene className="h-full w-full" cameraPos={[0, 0, 8]}><BouncingSphere /></Scene>
             </div>
             <div className="space-y-2">
               <h3 className="text-2xl font-bold text-pink-500">Problem Solver</h3>

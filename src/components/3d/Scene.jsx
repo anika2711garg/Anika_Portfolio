@@ -3,10 +3,10 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { OrbitControls } from "@react-three/drei";
 
-export default function Scene({ children }) {
+export default function Scene({ children, className = "h-full w-full", cameraPos = [0, 0, 12] }) {
   return (
-    <div className="h-[500px] w-full mt-6">
-      <Canvas camera={{ position: [0, 0, 12], fov: 55 }} shadows>
+    <div className={className}>
+      <Canvas camera={{ position: cameraPos, fov: 55 }} shadows>
         <Suspense fallback={null}>
           <OrbitControls enableZoom={false} />
           <ambientLight intensity={0.5} />
