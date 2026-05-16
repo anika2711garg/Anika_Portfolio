@@ -15,19 +15,21 @@ import { motion } from "framer-motion";
 function FloatingSphere() {
   const ref = useRef();
   useFrame((state) => {
-    ref.current.rotation.y += 0.005;
-    ref.current.rotation.z += 0.005;
-    ref.current.position.y = Math.sin(state.clock.elapsedTime) * 0.2;
+    // slower, subtler motion for a more natural feel
+    ref.current.rotation.y += 0.002;
+    ref.current.rotation.z += 0.0015;
+    ref.current.position.y = Math.sin(state.clock.elapsedTime) * 0.12;
   });
 
   return (
     <mesh ref={ref}>
       <sphereGeometry args={[2, 64, 64]} />
       <meshStandardMaterial
-        color="#6366f1"
-        wireframe
+        color="#7c3aed"
+        metalness={0.05}
+        roughness={0.6}
         transparent
-        opacity={0.3}
+        opacity={0.18}
       />
     </mesh>
   );
@@ -49,6 +51,21 @@ export default function AboutMe() {
 
   return (
     <div className="min-h-screen pt-24 md:pt-32 pb-20 px-4 md:px-12 lg:px-24 bg-[var(--background)] text-[var(--foreground)] overflow-hidden relative transition-colors duration-300">
+      {/* Top contact bar */}
+      <div className="max-w-7xl mx-auto mb-6 hidden md:flex items-center justify-between text-sm text-[var(--text-muted)]">
+        <div className="flex items-center gap-4">
+          <span>Punjab, India</span>
+          <span className="opacity-50">|</span>
+          <span>+91-781-499-6769</span>
+          <span className="opacity-50">|</span>
+          <a href="mailto:1406anika@gmail.com" className="hover:text-indigo-400">1406anika@gmail.com</a>
+        </div>
+        <div className="flex items-center gap-4">
+          <a href="https://www.linkedin.com/in/anika-garg-b594442a4/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">LinkedIn</a>
+          <a href="https://github.com/anika2711garg" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400">GitHub</a>
+          <a href="https://anika-portfolio.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-pink-400">Portfolio</a>
+        </div>
+      </div>
       {/* Background Glow */}
       <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-indigo-500/10 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-0 left-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-pink-500/10 rounded-full blur-[120px] -z-10" />
@@ -81,7 +98,7 @@ export default function AboutMe() {
           </motion.div>
 
           <motion.p variants={itemVars} className="text-lg md:text-xl text-[var(--text-muted)] leading-relaxed max-w-2xl px-4 md:p-6 rounded-2xl glass mx-auto lg:mx-0">
-            I build scalable, high-performance web applications with a focus on clean code and exceptional user experience. Currently pursuing B.Tech IT at <span className="text-indigo-500 font-bold">IIIT Vadodara</span>.
+            I build scalable, high-performance web applications with a focus on clean code and exceptional user experience. Currently pursuing B.Tech IT at <span className="text-indigo-500 font-bold">IIIT Vadodara</span>. Open to MERN-stack, AI engineering and full-stack roles.
           </motion.p>
 
           <motion.div variants={itemVars} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -91,9 +108,9 @@ export default function AboutMe() {
                 <h3 className="font-bold text-xl">Problem Solving</h3>
               </div>
               <ul className="space-y-1 text-[var(--text-muted)]">
-                <li>LeetCode: <span className="text-[var(--foreground)] font-medium">260+ Solved</span></li>
-                <li>GFG: <span className="text-[var(--foreground)] font-medium">350+ Solved</span></li>
-                <li>CodeChef: <span className="text-indigo-500 font-medium">2★ Coder</span></li>
+                <li>LeetCode: <span className="text-[var(--foreground)] font-medium">Knight (1877) • 300+ solved</span></li>
+                <li>GFG: <span className="text-[var(--foreground)] font-medium">400+ solved</span></li>
+                <li>CodeChef: <span className="text-indigo-500 font-medium">3★ Coder</span></li>
               </ul>
             </div>
             <div className="p-5 rounded-2xl glass hover:border-pink-500/50 transition-colors group">
@@ -124,6 +141,22 @@ export default function AboutMe() {
               </a>
             ))}
           </motion.div>
+
+          {/* Availability Badge */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-20 md:top-24 z-40">
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-4 py-2 rounded-full shadow-xl text-sm font-semibold">
+              <span>Available for:</span>
+              <span className="px-2 py-1 bg-white/10 rounded-full">MERN Stack</span>
+              <span className="px-2 py-1 bg-white/10 rounded-full">AI / GenAI</span>
+              <span className="px-2 py-1 bg-white/10 rounded-full">Software Development</span>
+            </div>
+          </div>
+
+          {/* CTA Buttons */}
+          <motion.div variants={itemVars} className="flex gap-4 mt-6 justify-center lg:justify-start">
+            <a href="mailto:1406anika@gmail.com" className="px-5 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-lg">Hire Me</a>
+            <a href="https://github.com/anika2711garg" target="_blank" rel="noopener noreferrer" className="px-5 py-3 rounded-full border border-indigo-600 text-indigo-600 hover:bg-indigo-50 font-semibold">Resume</a>
+          </motion.div>
         </div>
 
         {/* Right Content - Profile Image & 3D */}
@@ -147,11 +180,11 @@ export default function AboutMe() {
               <img
                 src={Anika}
                 alt="Portrait"
-                className="relative w-72 h-72 md:w-[450px] md:h-[450px] rounded-full border-2 border-white/20 object-cover object-top shadow-2xl transition-all duration-700 group-hover:scale-[1.03]"
+                className="relative w-72 h-72 md:w-[450px] md:h-[450px] rounded-full border border-white/10 object-cover object-top shadow-xl transition-all duration-500 group-hover:scale-[1.01]"
               />
 
-              <div className="absolute -bottom-6 -right-6 glass p-5 rounded-2xl shadow-2xl animate-bounce hidden md:flex items-center justify-center">
-                <FaCode className="text-indigo-500 text-3xl" />
+              <div className="absolute -bottom-6 -right-6 glass p-4 rounded-2xl shadow hidden md:flex items-center justify-center">
+                <FaCode className="text-indigo-500 text-2xl" />
               </div>
             </div>
           </motion.div>

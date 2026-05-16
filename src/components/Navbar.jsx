@@ -1,5 +1,3 @@
-// components/Navbar.jsx
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, Sun, Moon, Home as HomeIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,45 +10,45 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const navLinks = [
-    { name: <HomeIcon size={20} />, path: "/" },
-    { name: "Technical Skills", path: "/skills" },
-    { name: "Projects", path: "/projects" },
-    { name: "Experiences", path: "/achievements" },
-    { name: "Contact", path: "/contact" },
+    { name: <HomeIcon size={18} />, path: "#top", label: "Home" },
+    { name: "Experience", path: "#work" },
+    { name: "Projects", path: "#projects" },
+    { name: "Skills", path: "#skills" },
+    { name: "Contact", path: "#contact" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 glass border-b border-[var(--glass-border)] transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-[rgba(10,10,15,0.72)] backdrop-blur-xl transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="text-2xl font-bold tracking-tighter"
         >
-          <Link
-            to="/"
-            className="hover:scale-105 transition-transform"
-          >
+          <a href="#top" className="hover:opacity-90 transition-opacity">
             <span className="text-gradient">AG Portfolio</span>
-          </Link>
+          </a>
         </motion.div>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link, i) => (
-            <Link
+            <a
               key={i}
-              to={link.path}
-              className="text-sm font-bold text-[var(--foreground)] hover:text-indigo-500 transition-colors uppercase tracking-widest relative group opacity-90 hover:opacity-100"
+              href={link.path}
+              className="text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors uppercase tracking-[0.24em] relative group opacity-90 hover:opacity-100"
             >
-              {link.name}
+              <span className="flex items-center gap-2">
+                {link.name}
+                {link.label ? <span>{link.label}</span> : null}
+              </span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-300 group-hover:w-full" />
-            </Link>
+            </a>
           ))}
 
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full glass hover:bg-white/10 transition-colors text-indigo-500"
+            className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-[var(--primary)]"
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -60,7 +58,7 @@ export default function Navbar() {
         <div className="md:hidden flex items-center gap-4">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full glass text-indigo-500"
+            className="p-2 rounded-full border border-white/10 bg-white/5 text-[var(--primary)]"
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -77,18 +75,18 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden glass border-t border-[var(--glass-border)] transition-colors duration-300"
+            className="md:hidden border-t border-white/10 bg-[rgba(10,10,15,0.96)] backdrop-blur-xl transition-colors duration-300"
           >
-            <div className="flex flex-col p-6 gap-4">
+            <div className="flex flex-col p-5 gap-2">
               {navLinks.map((link, i) => (
-                <Link
+                <a
                   key={i}
-                  to={link.path}
+                  href={link.path}
                   onClick={toggleMenu}
-                  className="text-lg font-bold hover:text-indigo-500 transition-colors py-2 flex items-center gap-2"
+                  className="text-base font-semibold hover:text-[var(--primary)] transition-colors py-3 flex items-center gap-3 text-[var(--foreground)]"
                 >
-                  {link.name === "Home" ? <><HomeIcon size={20} /> Home</> : link.name}
-                </Link>
+                  {link.name === navLinks[0].name ? <><HomeIcon size={18} /> Home</> : link.name}
+                </a>
               ))}
             </div>
           </motion.div>
