@@ -7,9 +7,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
-          'animation-vendor': ['framer-motion'],
+        manualChunks(id) {
+          if (id.includes("framer-motion")) return "animation-vendor";
         },
       },
     },
