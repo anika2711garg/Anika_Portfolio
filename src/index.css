@@ -351,21 +351,43 @@ button, input, textarea { font: inherit; color: inherit; }
 .project-card.featured { grid-column: 1 / -1; }
 
 .shot {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   aspect-ratio: 16 / 10;
+  border: 1px solid var(--line);
   background: #111;
 }
 
-.featured .shot { aspect-ratio: 16 / 8; }
+.featured .shot { aspect-ratio: 16 / 9; }
+
+.shot-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  background: #1a1a1a;
+  border-bottom: 1px solid var(--line);
+}
+
+.shot-bar span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3a3a3a;
+}
 
 .shot img {
   width: 100%;
-  height: 100%;
+  min-height: 0;
+  flex: 1;
   object-fit: cover;
+  object-position: top center;
   transition: transform 0.5s var(--ease);
 }
 
-.project-card:hover .shot img { transform: scale(1.03); }
+.project-card:hover .shot img { transform: scale(1.02); }
 
 .project-meta {
   display: flex;

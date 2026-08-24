@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion as Motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import Anika from "./assets/anika.jpg";
-import ReactifyImg from "./assets/Reactify.png";
-import NexusImg from "./assets/Nexus.png";
-import CrisisImg from "./assets/CrisisConnect.png";
+import ReactifyImg from "./assets/Reactify-live.png";
+import NexusImg from "./assets/Nexus-live.png";
+import CrisisImg from "./assets/CrisisConnect-live.jpg";
 import { FaGithub, FaLinkedin, FaExternalLinkAlt, FaDownload } from "react-icons/fa";
 import { SiLeetcode, SiGeeksforgeeks } from "react-icons/si";
 import { ArrowDown, ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
@@ -123,11 +123,14 @@ function ProjectCard({ project, fade }) {
       variants={fade}
     >
       <div className="shot">
+        <div className="shot-bar" aria-hidden="true">
+          <span /><span /><span />
+        </div>
         <img
           src={project.image}
-          alt={`${project.name} preview`}
-          width="1200"
-          height="750"
+          alt={`${project.name} live interface`}
+          width="1440"
+          height="900"
           loading={project.featured ? "eager" : "lazy"}
           decoding="async"
         />
